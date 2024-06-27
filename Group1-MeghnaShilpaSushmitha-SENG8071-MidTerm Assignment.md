@@ -2,7 +2,7 @@
 
 ### TEAM MEMBERS RESPONSIBILITIES
 1. Meghna - 
-2. Shilpa - Creating Author and Book Review Tables and queries for finding Power Writers
+2. Shilpa - Creating Author and Book Review Tables, performing CRUD and queries for finding Power Writers
 3. Sushmitha - 
 
 ### REFERENCE LINKS
@@ -32,12 +32,18 @@
 | Price| DECIMAL         |
 |Stock| INT|
 
+3.Customers
+4.Ratings
 
 
 
-
-### SQL CODE BLOCK
-
+### SQL CODE BLOCK TO CREATE DATABASE
+```
+CREATE DATABASE Online BookStore Project;
+```
+### DDL/DML for the Tables and perform CRUD 
+###### *****CREATE OPERATION*****
+```
 CREATE TABLE `Authors` (
   `Author_ID` INT,
   `Author_Name` VARCHAR(20),
@@ -48,6 +54,27 @@ CREATE TABLE `Authors` (
   FOREIGN KEY (`Book_ID`) REFERENCES `Books`(`Book_ID`)
 );
 
+INSERT INTO Authors VALUES(1001,'J K ROWLING',2001,'FANTASY',26 -06 -1997),(1002,'Peter Rob',2002,'COMPUTERS',03 -01 -2013),
+(1003,'Brothers Grimm',1918,'FAIRY TALE',12 -06 -1918),(1001,'J K ROWLING',2004,'FANTASY',02 -07 -1998), (1002,'Carlos',2002,'COMPUTERS',03 -01 -2013) ;
+```
+###### *****READ OPERATION*****
+```
+SELECT * FROM Authors 
+WHERE Book_Genre = 'FANTASY';
+```
+###### *****UPDATE OPERATION*****
+```
+UPDATE Authors 
+SET Book_ID = 2003
+WHERE Author_ID = 1003;
+```
+
+###### *****DELETE OPERATION*****
+```
+DELETE FROM Authors 
+WHERE Author_Name = 'Carlos';
+```
+```
 CREATE TABLE `Book` (
   `Book_ID` INT,
   `Book_Name` VARCHAR(20),
@@ -58,3 +85,34 @@ CREATE TABLE `Book` (
   PRIMARY KEY (`Book_ID`),
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
+
+INSERT INTO 
+```
+### SQL QUERIES FOR THE REQUIREMENTS
+
+### TYPESCRIPT INTERFACE
+```
+interface Online BookStore Project{
+  
+
+create: 
+{
+  Author_ID:number;
+  Author_Name:string;
+  Book_ID : number;
+  Book_Genre : string;
+  Date_Published : number;
+};
+
+insert : 
+{
+  Author_ID:1003;
+  Author_Name: 'Brothers Grimm';
+  Book_ID = 1918;
+  Book_Genre = 'Fairy Tale';
+  Date_Published = '12-06-1918';
+};
+
+
+}
+```
