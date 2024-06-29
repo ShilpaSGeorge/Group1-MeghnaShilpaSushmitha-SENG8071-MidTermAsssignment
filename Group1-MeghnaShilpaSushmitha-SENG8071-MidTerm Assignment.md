@@ -2,7 +2,7 @@
 
 ### TEAM MEMBERS RESPONSIBILITIES
 1. Meghna - 
-2. Shilpa - Creating Author and Book Review Tables, performing CRUD and queries for finding Power Writers
+2. Shilpa - Creating Author and Book Tables, performing CRUD ,queries for finding Power Writers and Transcript
 3. Sushmitha - 
 
 ### REFERENCE LINKS
@@ -17,18 +17,19 @@
 | ------------- |:-------------:|
 | Author_ID  (PK)   | INT           |
 | Author_Name   | VARCHAR(20)   |
-| Book_ID    (FK)   | INT           |
+| DOB| DATE          |
 | Book_Genre    | VARCHAR(20)   |
-| Date_Published| DATE          |
+
 
 2.Books
 
 | Attribute Name  | Attribute Type|
 | ------------- |:-------------:|
 | Book_ID  (PK)   | INT           |
-| Book_Name   | VARCHAR(20)   |
+| Book_Name   | VARCHAR(50)   |
 | Book_Genre    | VARCHAR(20)   |
 | Author_ID    (FK)   | INT           |
+|Date_Published | DATE|
 | Price| DECIMAL         |
 |Stock| INT|
 
@@ -47,15 +48,15 @@ CREATE DATABASE Online BookStore Project;
 CREATE TABLE `Authors` (
   `Author_ID` INT,
   `Author_Name` VARCHAR(20),
-  `Book_ID` INT,
+  `DOB` DATE,
   `Book_Genre` VARCHAR(20),
-  `Date_Published` DATE,
-  PRIMARY KEY (`Author_ID`),
-  FOREIGN KEY (`Book_ID`) REFERENCES `Books`(`Book_ID`)
+  
+  PRIMARY KEY (`Author_ID`)
+  
 );
 
-INSERT INTO Authors VALUES(1001,'J K ROWLING',2001,'FANTASY',26 -06 -1997),(1002,'Peter Rob',2002,'COMPUTERS',03 -01 -2013),
-(1003,'Brothers Grimm',1918,'FAIRY TALE',12 -06 -1918),(1001,'J K ROWLING',2004,'FANTASY',02 -07 -1998), (1002,'Carlos',2002,'COMPUTERS',03 -01 -2013) ;
+INSERT INTO Authors VALUES(1001,'J K ROWLING','26 -06 -1997','FANTASY'),(1002,'Peter Rob','03 -01 -2013','COMPUTERS'),
+(1003,'Brothers Grim','12-06-1918','FAIRY TALE'), (1004,'Carlos','03 -01 -2013','COMPUTERS');
 ```
 ###### *****READ OPERATION*****
 ```
@@ -65,7 +66,7 @@ WHERE Book_Genre = 'FANTASY';
 ###### *****UPDATE OPERATION*****
 ```
 UPDATE Authors 
-SET Book_ID = 2003
+SET Author_Name = 'Brothers Grimm'
 WHERE Author_ID = 1003;
 ```
 
@@ -75,20 +76,37 @@ DELETE FROM Authors
 WHERE Author_Name = 'Carlos';
 ```
 ```
-CREATE TABLE `Book` (
+CREATE TABLE `Books` (
   `Book_ID` INT,
-  `Book_Name` VARCHAR(20),
+  `Book_Name` VARCHAR(50),
   `Book_Genre` VARCHAR(20),
   `Author_ID` INT,
+  `Date_Published` DATE,
   `Price` DECIMAL,
   `Stock` INT,
   PRIMARY KEY (`Book_ID`),
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
 
-INSERT INTO 
+INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15), 
+(2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15) ;
 ```
 ### SQL QUERIES FOR THE REQUIREMENTS
+1.Power writers (authors) with more than X books in the same genre published within the last X years
+```
+SELECT A.Author_ID,
+A.Author_Name
+
+FROM Authors as A
+INNER JOIN Books as B
+ON A.Author_ID = B.Author_ID
+WHERE A.Book_Genre = B.Book_Genre
+AND EXTRACT(YEAR FROM B.Date_Published) >= (EXTRACT(YEAR FROM CURRENT_DATE) - 30)
+AND B.Date_Published >= (CURRENT_DATE) - 10
+GROUP BY A.Author_ID
+HAVING COUNT (DISTINCT B.Book_ID)>2;
+
+```
 
 ### TYPESCRIPT INTERFACE
 ```
