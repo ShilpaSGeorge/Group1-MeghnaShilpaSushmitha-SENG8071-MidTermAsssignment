@@ -37,13 +37,26 @@
 3.Customers
 
 4.Review
+
 | Attribute Name  | Attribute Type|
 | ------------- |:-------------:|
-| Review_ID  (PK)   | VARCHAR(20)           |
-| Customer_ID (FK)   | VARCHAR(20)   |
+| Review_ID  (PK)   | INT           |
+| Customer_ID (FK)   | INT   |
 | Book_ID       | INT           |
 | Rating_level       | INT           |
 | Review_Published| DATE          |
+
+5. Sales
+
+| Attribute Name  | Attribute Type|
+| ------------- |:-------------:|
+| SALE_ID  (PK)   | INT           |
+| Book_ID   | INT   |
+| Book_Genre    | VARCHAR(20)   |
+| Customer_ID (FK)   | INT   |
+| Price     | DECIMAL           |
+|Date_sold | DATE|
+
 
 
 
