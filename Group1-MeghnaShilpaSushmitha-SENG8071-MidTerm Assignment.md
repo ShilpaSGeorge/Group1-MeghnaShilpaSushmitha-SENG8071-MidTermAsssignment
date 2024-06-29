@@ -32,9 +32,19 @@
 |Date_Published | DATE|
 | Price| DECIMAL         |
 |Stock| INT|
+|Book_Type| VARCHAR(20)|
 
 3.Customers
-4.Ratings
+
+4.Review
+| Attribute Name  | Attribute Type|
+| ------------- |:-------------:|
+| Review_ID  (PK)   | VARCHAR(20)           |
+| Customer_ID (FK)   | VARCHAR(20)   |
+| Book_ID       | INT           |
+| Rating_level       | INT           |
+| Review_Published| DATE          |
+
 
 
 
@@ -88,8 +98,12 @@ CREATE TABLE `Books` (
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
 
+<<<<<<< HEAD
+INSERT INTO
+=======
 INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15), 
 (2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15) ;
+>>>>>>> b09c545640f8f4b9bf7a902d29cf8ea2dcdfefef
 ```
 ### SQL QUERIES FOR THE REQUIREMENTS
 1.Power writers (authors) with more than X books in the same genre published within the last X years
