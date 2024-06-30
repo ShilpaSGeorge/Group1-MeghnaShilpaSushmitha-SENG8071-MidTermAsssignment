@@ -172,7 +172,7 @@ LIMIT;
 
 
 ```
-5. Well Reviewed books that has a better user rating than average
+5. 10 Most recent reviews
 ```
 SELECT * from Reviews
 FROM Books AS B
