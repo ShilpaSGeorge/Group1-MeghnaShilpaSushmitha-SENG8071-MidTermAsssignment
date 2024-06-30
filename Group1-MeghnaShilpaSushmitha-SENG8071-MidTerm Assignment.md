@@ -168,16 +168,16 @@ SELECT Book_Genre, SUM(Sale_Price) AS Total_Sales
 FROM Sales
 GROUP BY Book_Genre
 ORDER BY Total_Sales DESC
-LIMIT 1;
+LIMIT;
 ```
 
 ```
-5. 10 Most recent posted reviews
+5. Well Reviewed books that has a better user rating than average
 ```
 SELECT * from Reviews
+FROM Books AS B
 ORDER BY Review_Published DESC
 LIMIT 10;
-```
 
 ### TYPESCRIPT INTERFACE
 ```
