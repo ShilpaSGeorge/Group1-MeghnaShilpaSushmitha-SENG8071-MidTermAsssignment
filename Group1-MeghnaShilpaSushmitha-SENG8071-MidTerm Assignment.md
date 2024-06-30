@@ -36,6 +36,14 @@
 
 3.Customers
 
+| Attribute Name  | Attribute Type|
+| ------------- |:-------------:|
+| Customer_ID  (PK)   | INT           |
+| Customer_Name   | VARCHAR(50)   |
+| Customer_Email    | VARCHAR(25)   |
+| Customer_Address   | VARCHAR(25)     |
+|Customer_phone | VARCHAR(10)|
+
 4.Reviews
 
 | Attribute Name  | Attribute Type|
