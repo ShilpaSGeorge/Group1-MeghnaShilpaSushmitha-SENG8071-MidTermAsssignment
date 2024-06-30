@@ -169,7 +169,6 @@ FROM Sales
 GROUP BY Book_Genre
 ORDER BY Total_Sales DESC
 LIMIT;
-```
 
 
 ```
@@ -179,6 +178,7 @@ SELECT * from Reviews
 FROM Books AS B
 ORDER BY Review_Published DESC
 LIMIT 10;
+
 
 ### TYPESCRIPT INTERFACE
 ```
