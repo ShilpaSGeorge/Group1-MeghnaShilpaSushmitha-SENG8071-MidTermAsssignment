@@ -5,6 +5,9 @@
 2. Shilpa - Creating Author and Book Tables, performing CRUD ,queries for finding Power Writers and Typescript Interface
 3. Sushmitha - Creating Sales and Review Tables, queries to find Loyal Customers and Well Reviewed Books.
 
+### GITHUB LINK TO THE PROJECT REPOSITORY
+1. https://github.com/ShilpaSGeorge/Group1-MeghnaShilpaSushmitha-SENG8071-MidTermAsssignment
+
 ### REFERENCE LINKS
 1. https://github.com/VasudhaAmbre/Spring-Boot-BookStore-Application/blob/main/OBS.sql
 
@@ -13,60 +16,57 @@
 1.Authors
 
 
-| Attribute Name  | Attribute Type|
-| ------------- |:-------------:|
-| Author_ID  (PK)   | INT           |
-| Author_Name   | VARCHAR(20)   |
-| DOB| DATE          |
-| Book_Genre    | VARCHAR(20)   |
+| Attribute Name  | Attribute Type |
+| --------------- | :------------: |
+| Author_ID  (PK) |      INT       |
+| Author_Name     |  VARCHAR(20)   |
+| DOB             |      DATE      |
+| Book_Genre      |  VARCHAR(20)   |
 
 
 2.Books
 
-| Attribute Name  | Attribute Type|
-| ------------- |:-------------:|
-| Book_ID  (PK)   | INT           |
-| Book_Name   | VARCHAR(50)   |
-| Book_Genre    | VARCHAR(20)   |
-| Author_ID    (FK)   | INT           |
-|Date_Published | DATE|
-| Price| DECIMAL         |
-|Stock| INT|
-|Book_Type| VARCHAR(20)|
+| Attribute Name    | Attribute Type |
+| ----------------- | :------------: |
+| Book_ID  (PK)     |      INT       |
+| Book_Name         |  VARCHAR(50)   |
+| Book_Genre        |  VARCHAR(20)   |
+| Author_ID    (FK) |      INT       |
+| Date_Published    |      DATE      |
+| Price             |    DECIMAL     |
+| Stock             |      INT       |
+| Book_Type         |  VARCHAR(20)   |
 
 3.Customers
 
-| Attribute Name  | Attribute Type|
-| ------------- |:-------------:|
-| Customer_ID  (PK)   | INT           |
-| Customer_Name   | VARCHAR(50)   |
-| Customer_Email    | VARCHAR(25)   |
-| Customer_Address   | VARCHAR(25)     |
-|Customer_phone | VARCHAR(10)|
+| Attribute Name    | Attribute Type |
+| ----------------- | :------------: |
+| Customer_ID  (PK) |      INT       |
+| Customer_Name     |  VARCHAR(50)   |
+| Customer_Email    |  VARCHAR(25)   |
+| Customer_Address  |  VARCHAR(25)   |
+| Customer_phone    |  VARCHAR(10)   |
 
 4.Reviews
 
-| Attribute Name  | Attribute Type|
-| ------------- |:-------------:|
-| Review_ID  (PK)   | INT           |
-| Customer_ID (FK)   | INT   |
-| Book_ID       | INT           |
-| Rating_level       | INT           |
-| Review_Published| DATE          |
+| Attribute Name   | Attribute Type |
+| ---------------- | :------------: |
+| Review_ID  (PK)  |      INT       |
+| Customer_ID (FK) |      INT       |
+| Book_ID          |      INT       |
+| Rating_level     |      INT       |
+| Review_Published |      DATE      |
 
 5. Sales
 
-| Attribute Name  | Attribute Type|
-| ------------- |:-------------:|
-| SALE_ID  (PK)   | INT           |
-| Book_ID   | INT   |
-| Book_Genre    | VARCHAR(20)   |
-| Customer_ID (FK)   | INT   |
-| Sale_Price     | DECIMAL           |
-|Date_sold | DATE|
-
-
-
+| Attribute Name   | Attribute Type |
+| ---------------- | :------------: |
+| SALE_ID  (PK)    |      INT       |
+| Book_ID          |      INT       |
+| Book_Genre       |  VARCHAR(20)   |
+| Customer_ID (FK) |      INT       |
+| Sale_Price       |    DECIMAL     |
+| Date_sold        |      DATE      |
 
 
 ### SQL CODE BLOCK TO CREATE DATABASE
@@ -86,8 +86,10 @@ CREATE TABLE `Authors` (
   
 );
 
-INSERT INTO Authors VALUES(1001,'J K ROWLING','26 -06 -1997','FANTASY'),(1002,'Peter Rob','03 -01 -2013','COMPUTERS'),
-(1003,'Brothers Grim','12-06-1918','FAIRY TALE'), (1004,'Carlos','03 -01 -2013','COMPUTERS');
+INSERT INTO Authors VALUES(1001,'J K ROWLING','26 -06 -1976','FANTASY'),
+(1002,'Peter Rob','03 -01 -1980','COMPUTERS'),
+(1003,'Brothers Grim','12-06-1780','FAIRY TALE'), 
+(1004,'Carlos','03 -01 -1950','COMPUTERS');
 ```
 ###### *****READ OPERATION*****
 ```
@@ -120,8 +122,11 @@ CREATE TABLE `Books` (
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
 
-INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10, e-book),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15, physical book), 
-(2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20, audiobook), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12, e-book), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15, audiobook) ;
+INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10, 'e-book'),
+(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15, 'physical book'), 
+(2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20, 'audiobook'),
+(2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12, 'e-book'), 
+(2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15, 'audiobook') ;
 ```
 ### SQL QUERIES FOR THE REQUIREMENTS
 1.Power writers (authors) with more than X books in the same genre published within the last X years
@@ -179,31 +184,37 @@ LIMIT 10;
 ### TYPESCRIPT INTERFACE
 ```
 // To create an interface for the Authors Table
+export interface Authors {
+  Author_ID: number;
+  Author_Name: string;
+  DOB: string;
+  Book_Genre: string;
+}
 
-interface Authors {
-    Author_ID: number;
-    Author_Name: string;
-    DOB: string; 
-    Book_Genre: string;
-  }
- // To create an interface to define the CRUD Operations
-interface AuthorService {
-    createAuthor:(author: Authors)=> void;
-    getAuthorById:(authorId: number)=> Authors[];
-    updateAuthor:(author: Authors)=> void;
-    deleteAuthor:(authorId: number)=> void;
-  }
-  
-  // Class to execute the CRUD interface
-  class AuthorServiceImpl implements AuthorService 
-  {
-    createAuthor:(author: Authors)=> void
-    
-        return;
+// To create an interface to define the CRUD Operations
+export default interface AuthorService {
+  createAuthor: (author: Authors) => void;
+  //insertAuthor: <T = unknown>(author:T,authorId: number)=> void;
+  //getAuthorById:(authorId: number)=> Authors[];
+  //updateAuthor:(author: Authors)=> void;
+  //deleteAuthor:(authorId: number)=> void;
+}
 
-    
-   // getAuthorById:(authorId: number)=> Authors[];
-    //updateAuthor:(author: Authors)=> void;
-    //deleteAuthor:(authorId: number)=> void;
+// Class to execute the CRUD interface- Create Operation
+class AuthorsServiceImpl implements AuthorService {
+  createAuthor(author: Authors): void {
+    // Implementation for creating an author
+    console.log(
+      `Author with authorID: "${author.Author_ID}" and Name: "${author.Author_Name}" created....!`
+    );
   }
+}
+
+const authorTable = new AuthorsServiceImpl();
+authorTable.createAuthor({
+  Author_ID: 1001,
+  Author_Name: "J K ROWLING",
+  DOB: "26-06-1976",
+  Book_Genre: "FANTASY",
+});
 ```

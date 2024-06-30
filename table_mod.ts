@@ -1,22 +1,34 @@
 // To create an interface for the Authors Table
-interface Authors {
-    Author_ID: number;
-    Author_Name: string;
-    DOB: string; 
-    Book_Genre: string;
-  }
-  
-  // To create an interface to define the CRUD Operations
-  interface AuthorService {
-    createAuthor:(author: Authors)=> void;
-   // getAuthorById:(authorId: number)=> Authors;
-    //updateAuthor:(author: Authors)=> void;
-    //deleteAuthor:(authorId: number)=> void;
-  }
-  
-  // Class to execute the CRUD interface
-class AuthorServiceImpl implements AuthorService {
-     createAuthor:(author: Authors)=> void {
-        const query = `INSERT INTO Authors ({author.Author_ID}, {author.Author_Name}, {author.DOB},(author.Book_Genre}) VALUES (1001,'J K ROWLING','26 -06 -1997','FANTASY')`;
-      }
+export interface Authors {
+  Author_ID: number;
+  Author_Name: string;
+  DOB: string;
+  Book_Genre: string;
 }
+
+// To create an interface to define the CRUD Operations
+export default interface AuthorService {
+  createAuthor: (author: Authors) => void;
+  //insertAuthor: <T = unknown>(author:T,authorId: number)=> void;
+  //getAuthorById:(authorId: number)=> Authors[];
+  //updateAuthor:(author: Authors)=> void;
+  //deleteAuthor:(authorId: number)=> void;
+}
+
+// Class to execute the CRUD interface- Create Operation
+class AuthorsServiceImpl implements AuthorService {
+  createAuthor(author: Authors): void {
+    // Implementation for creating an author
+    console.log(
+      `Author with authorID: "${author.Author_ID}" and Name: "${author.Author_Name}" created....!`
+    );
+  }
+}
+
+const authorTable = new AuthorsServiceImpl();
+authorTable.createAuthor({
+  Author_ID: 1001,
+  Author_Name: "J K ROWLING",
+  DOB: "26-06-1976",
+  Book_Genre: "FANTASY",
+});
