@@ -175,7 +175,6 @@ LIMIT;
 5. 10 Most recent reviews
 ```
 SELECT * from Reviews
-FROM Books AS B
 ORDER BY Review_Published DESC
 LIMIT 10;
 
