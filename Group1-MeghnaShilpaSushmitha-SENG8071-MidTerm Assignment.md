@@ -168,7 +168,7 @@ SELECT Book_Genre, SUM(Sale_Price) AS Total_Sales
 FROM Sales
 GROUP BY Book_Genre
 ORDER BY Total_Sales DESC
-LIMIT;
+LIMIT 1;
 
 
 ```
