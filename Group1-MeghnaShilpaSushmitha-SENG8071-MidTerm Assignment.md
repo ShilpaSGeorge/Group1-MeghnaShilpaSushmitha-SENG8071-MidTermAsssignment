@@ -36,7 +36,7 @@
 
 3.Customers
 
-4.Review
+4.Reviews
 
 | Attribute Name  | Attribute Type|
 | ------------- |:-------------:|
@@ -54,7 +54,7 @@
 | Book_ID   | INT   |
 | Book_Genre    | VARCHAR(20)   |
 | Customer_ID (FK)   | INT   |
-| Price     | DECIMAL           |
+| Sale_Price     | DECIMAL           |
 |Date_sold | DATE|
 
 
@@ -134,7 +134,26 @@ GROUP BY A.Author_ID
 HAVING COUNT (DISTINCT B.Book_ID)>2;
 
 ```
+2.Loyal Customers who has spent more than 1000 dollars in the last year
+```
+SELECT Customer_ID, SUM(Sale_Price) AS Total_Spending
+FROM Sales
+WHERE Date_sold >= DATEADD(YEAR, -1, CURRENT_DATE)
+GROUP BY Customer_ID
+HAVING SUM(Sale_Price) > 1000;
 
+
+```
+3. Well Reviewed books that has a better user rating than average
+```
+SELECT B.Book_ID, B.Book_Title
+FROM Books AS B
+JOIN Reviews AS R ON B.Book_ID = R.Book_ID
+GROUP BY B.Book_ID, B.Book_Title
+HAVING AVG(R.Rating_level) > (SELECT AVG(Rating_level) FROM Reviews);
+
+
+```
 ### TYPESCRIPT INTERFACE
 ```
 interface Online BookStore Project{
