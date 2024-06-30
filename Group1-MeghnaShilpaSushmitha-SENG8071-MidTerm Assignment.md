@@ -1,9 +1,9 @@
 ## DATABASE TESTING MID-TERM GROUP PROJECT- GROUP1
 
 ### TEAM MEMBERS RESPONSIBILITIES
-1. Meghana - 
-2. Shilpa - Creating Author and Book Tables, performing CRUD ,queries for finding Power Writers and Transcript
-3. Sushmitha - 
+1. Meghana - Creating Customer Table, queries to find Popular Genre and 10 most recent reviews.
+2. Shilpa - Creating Author and Book Tables, performing CRUD ,queries for finding Power Writers and Typescript Interface
+3. Sushmitha - Creating Sales and Review Tables, queries to find Loyal Customers and Well Reviewed Books.
 
 ### REFERENCE LINKS
 1. https://github.com/VasudhaAmbre/Spring-Boot-BookStore-Application/blob/main/OBS.sql
@@ -119,12 +119,8 @@ CREATE TABLE `Books` (
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
 
-<<<<<<< HEAD
-INSERT INTO
-=======
 INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15), 
 (2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15) ;
->>>>>>> b09c545640f8f4b9bf7a902d29cf8ea2dcdfefef
 ```
 ### SQL QUERIES FOR THE REQUIREMENTS
 1.Power writers (authors) with more than X books in the same genre published within the last X years
@@ -136,8 +132,7 @@ FROM Authors as A
 INNER JOIN Books as B
 ON A.Author_ID = B.Author_ID
 WHERE A.Book_Genre = B.Book_Genre
-AND EXTRACT(YEAR FROM B.Date_Published) >= (EXTRACT(YEAR FROM CURRENT_DATE) - 30)
-AND B.Date_Published >= (CURRENT_DATE) - 10
+AND B.Date_Published >= (YEAR (CURRENT_DATE) - 10)
 GROUP BY A.Author_ID
 HAVING COUNT (DISTINCT B.Book_ID)>2;
 
@@ -182,27 +177,32 @@ LIMIT 10;
 ```
 ### TYPESCRIPT INTERFACE
 ```
-interface Online BookStore Project{
+// To create an interface for the Authors Table
+
+interface Authors {
+    Author_ID: number;
+    Author_Name: string;
+    DOB: string; 
+    Book_Genre: string;
+  }
+ // To create an interface to define the CRUD Operations
+interface AuthorService {
+    createAuthor:(author: Authors)=> void;
+    getAuthorById:(authorId: number)=> Authors[];
+    updateAuthor:(author: Authors)=> void;
+    deleteAuthor:(authorId: number)=> void;
+  }
   
+  // Class to execute the CRUD interface
+  class AuthorServiceImpl implements AuthorService 
+  {
+    createAuthor:(author: Authors)=> void
+    
+        return;
 
-create: 
-{
-  Author_ID:number;
-  Author_Name:string;
-  Book_ID : number;
-  Book_Genre : string;
-  Date_Published : number;
-};
-
-insert : 
-{
-  Author_ID:1003;
-  Author_Name: 'Brothers Grimm';
-  Book_ID = 1918;
-  Book_Genre = 'Fairy Tale';
-  Date_Published = '12-06-1918';
-};
-
-
-}
+    
+   // getAuthorById:(authorId: number)=> Authors[];
+    //updateAuthor:(author: Authors)=> void;
+    //deleteAuthor:(authorId: number)=> void;
+  }
 ```
