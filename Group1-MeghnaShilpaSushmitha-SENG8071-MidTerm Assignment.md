@@ -174,7 +174,7 @@ LIMIT 1;
 ```
 5. 10 Most recent posted reviews
 ```
-SELECT * from Reviews;
+SELECT * from Reviews
 ORDER BY Review_Published DESC
 LIMIT 10;
 ```
