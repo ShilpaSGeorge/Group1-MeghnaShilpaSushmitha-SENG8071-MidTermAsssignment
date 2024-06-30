@@ -115,12 +115,13 @@ CREATE TABLE `Books` (
   `Date_Published` DATE,
   `Price` DECIMAL,
   `Stock` INT,
+  `Book_Type` VARCHAR(20),
   PRIMARY KEY (`Book_ID`),
   FOREIGN KEY (`Author_ID`) REFERENCES `Authors`(`Author_ID`)
 );
 
-INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15), 
-(2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15) ;
+INSERT INTO Books VALUES(2001, 'Harry Potter Part 1','FANTASY',1001,'26-07-1997', 230.56, 10, e-book),(2002, 'Database Systems','COMPUTERS',1002, '12-03-1998', 330.56, 15, physical book), 
+(2003, 'Snow White','FAIRY TALE',1003,'27-08-1918', 200.00, 20, audiobook), (2004, 'Harry Potter Part 2','FANTASY',1001,'29-06-1998', 230.56, 12, e-book), (2006, 'The Running Grave','FANTASY',1001, '12-01-2023', 280.56, 15, audiobook) ;
 ```
 ### SQL QUERIES FOR THE REQUIREMENTS
 1.Power writers (authors) with more than X books in the same genre published within the last X years
