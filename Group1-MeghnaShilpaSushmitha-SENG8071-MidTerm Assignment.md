@@ -180,6 +180,7 @@ ORDER BY Review_Published DESC
 LIMIT 10;
 
 
+```
 ### TYPESCRIPT INTERFACE
 ```
 interface Online BookStore Project{
