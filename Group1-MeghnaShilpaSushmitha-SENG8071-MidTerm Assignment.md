@@ -1,7 +1,7 @@
 ## DATABASE TESTING MID-TERM GROUP PROJECT- GROUP1
 
 ### TEAM MEMBERS RESPONSIBILITIES
-1. Meghna - 
+1. Meghana - 
 2. Shilpa - Creating Author and Book Tables, performing CRUD ,queries for finding Power Writers and Transcript
 3. Sushmitha - 
 
@@ -162,6 +162,23 @@ HAVING AVG(R.Rating_level) > (SELECT AVG(Rating_level) FROM Reviews);
 
 
 ```
+4. Most popular genre by sales
+```
+SELECT Book_Genre, SUM(Sale_Price) AS Total_Sales
+FROM Sales
+GROUP BY Book_Genre
+ORDER BY Total_Sales DESC
+LIMIT 1;
+```
+
+```
+5. 10 Most recent posted reviews
+```
+SELECT * from Reviews;
+ORDER BY Review_Published DESC
+LIMIT 10;
+```
+
 ### TYPESCRIPT INTERFACE
 ```
 interface Online BookStore Project{
